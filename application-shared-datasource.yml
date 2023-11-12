@@ -4,7 +4,7 @@ spring.config.activate.on-profile: dev
 
 jace:
   shim:
-    name: dev-name
+    name: dev-name-1
 
 ---
 spring.config.activate.on-profile: cbt
