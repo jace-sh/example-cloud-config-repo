@@ -1,0 +1,21 @@
+
+---
+spring.config.activate.on-profile: dev
+
+jace:
+  shim:
+    name: dev-name
+
+---
+spring.config.activate.on-profile: cbt
+
+jace:
+  shim:
+    name: cbt-name    
+
+---
+spring.config.activate.on-profile: prod
+
+jace:
+  shim:
+    name: prod-name        
