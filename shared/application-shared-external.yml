@@ -1,0 +1,21 @@
+---
+spring.config.activate.on-profile: local
+fanstore:
+  external:
+
+---
+spring.config.activate.on-profile: dev
+fanstore:
+  external:
+
+---
+spring.config.activate.on-profile: cbt
+fanstore:
+  external:
+
+---
+spring.config.activate.on-profile: prod
+fanstore:
+  external:
+
+
