@@ -8,7 +8,7 @@ fanstore:
     mq:
       #      pubsub:
       kafka:
-        username: kafka
+        username: kafka-local
         password: wxaj8wjCW2
         bootstrapAddress: localhost:9092
         protocol: SASL_PLAINTEXT
