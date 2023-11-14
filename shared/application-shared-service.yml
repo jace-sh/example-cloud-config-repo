@@ -64,4 +64,4 @@ fanstore:
       host: http://localhost:10040
     -
       name: verify
-      host: http://localhost:10050
+      host: http://prod:10050
