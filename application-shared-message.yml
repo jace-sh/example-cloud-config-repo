@@ -1,5 +1,5 @@
 ---
-spring.cloud.config.profile: local
+spring.config.activate.on-profile: local
 fanstore:
   message:
     policy:
@@ -8,13 +8,13 @@ fanstore:
     mq:
       #      pubsub:
       kafka:
-        username: kafka-local
+        username: kafka
         password: wxaj8wjCW2
         bootstrapAddress: localhost:9092
         protocol: SASL_PLAINTEXT
 
 ---
-spring.cloud.config.profile: dev
+spring.config.activate.on-profile: dev
 fanstore:
   message:
     policy:
@@ -23,7 +23,7 @@ fanstore:
     mq:
       #      pubsub:
       kafka:
-        username: kafka-dev
+        username: kafka
         password: wxaj8wjCW2
         bootstrapAddress: localhost:9092
         protocol: SASL_PLAINTEXT
