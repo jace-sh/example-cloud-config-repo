@@ -1,3 +1,16 @@
+fanstore:
+  message:
+    policy:
+      retryCount: 3
+      retryDelay: 1000
+    mq:
+      #      pubsub:
+      kafka:
+        username: kafka
+        password: wxaj8wjCW2
+        bootstrapAddress: localhost:9092
+        protocol: SASL_PLAINTEXT
+        
 ---
 spring.config.activate.on-profile: local
 fanstore:
