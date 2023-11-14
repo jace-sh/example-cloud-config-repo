@@ -1,9 +1,12 @@
 spring:
   jpa:
     open-in-view: false
-  flyway:
-    table: z_flyway_schema_history
-    locations: classpath:ddl
+
+fanstore:
+  persistence:
+    flyway:
+      table: z_flyway_schema_history
+      locations: classpath:ddl
 
 ---
 spring.config.activate.on-profile: local
@@ -22,49 +25,40 @@ spring:
     hibernate:
       ddl-auto: create-drop
   #    defer-datasource-initialization: true # spring.sql.init 으로 data를 등록하기 위해선 이 mode가 true로 설정되어 있어야함
-  flyway:
-    enabled: false
-  data:
-    mongodb:
-      authentication-database: admin
-      uri: mongodb+srv://fanstore:%21fans.dcja61%23@dev-etc-publicmongo-kor-001.kakaoent.io/fanstore?authSource=admin&retryWrites=true&w=majority&tls=false&ssl=false
 
-master-datasource:
-  jdbc-url: jdbc:h2:mem:fanstore;NON_KEYWORDS=USER
-  username: sa
-  password:
-  driver-class-name: org.h2.Driver
+fanstore:
+  persistence:
+    flayway:
+      enabled: true
+      clean-disabled: true
+    datasource:
+      mongo: 
+        authentication-database: admin
+        url: mongodb+srv://fanstore:%21fans.dcja61%23@dev-etc-publicmongo-kor-001.kakaoent.io/fanstore?authSource=admin&retryWrites=true&w=majority&tls=false&ssl=false
+      mysql:
+        account-master:
+          jdbc-url: jdbc:h2:mem:fanstore:account;NON_KEYWORDS=USER
+          username: sa
+          password:
+          driver-class-name: org.h2.Driver
 
-#master-datasource:
-#  jdbc-url: jdbc:mysql://localhost:3306/mall?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
-#  username: fanstore
-#  password: fanstore123#
-#  driver-class-name: com.mysql.cj.jdbc.Driver
+        order-master:
+          jdbc-url: jdbc:h2:mem:fanstore:order;NON_KEYWORDS=USER
+          username: sa
+          password:
+          driver-class-name: org.h2.Driver      
 
-#spring.flyway:
-#  enabled: true
-#  baselineOnMigrate: true  # 첫 시동시 필요할수도 있습니다.
-#  url: jdbc:mysql://localhost:3306/mall?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
-#  user: fanstore
-#  password: fanstore123#
+        mall-master:
+          jdbc-url: jdbc:h2:mem:fanstore:mall;NON_KEYWORDS=USER
+          username: sa
+          password:
+          driver-class-name: org.h2.Driver      
 
-# Entity변경 특히 연관관계 변경이 일어난 경우 위에 h2, jpa관련 주석을 제거하고 아래 mysql master-datasource를 주석처리 및 spring.flyway.enabled: false로 변경한 다음
-# 변경된 Entity에 대한 table 변경사항에 대해 alter table 및 column 내역을 확인 후 이를 반영하는 flyway script를 작성하고
-# 다시 위 h2, jpa관련 주석처리 및 아래 mysql master-datasource 부분 주석제거 및 spring.flyway.enabled: true로 변경해서 확인한다.
-# local에서  mysql 로 구동시키는 경우 아래 주석 제거 및 위 h2 설정 주석 처리
-
-#master-datasource:
-#  jdbc-url: jdbc:mysql://localhost:3306/mall?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
-#  username: fanstore
-#  password: fanstore123#
-#  driver-class-name: com.mysql.cj.jdbc.Driver
-
-#spring.flyway:
-#  enabled: true
-#  baselineOnMigrate: true  # 첫 시동시 필요할수도 있습니다.
-#  url: jdbc:mysql://localhost:3306/mall?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
-#  user: fanstore
-#  password: fanstore123#
+        verify-master:
+          jdbc-url: jdbc:h2:mem:fanstore:verify;NON_KEYWORDS=USER
+          username: sa
+          password:
+          driver-class-name: org.h2.Driver
 
 ---
 spring.config.activate.on-profile: dev
@@ -74,44 +68,96 @@ spring:
     show-sql: false
     hibernate:
       ddl-auto: create-drop
-  data:
-    mongodb:
-      authentication-database: admin
-      uri: mongodb+srv://fanstore:%21fans.dcja61%23@dev-etc-publicmongo-kor-001.kakaoent.io/fanstore?authSource=admin&retryWrites=true&w=majority&tls=false&ssl=false
 
-master-datasource:
-  jdbc-url: jdbc:mysql://dev-fanstore-db.kakaoent.io:3306/mall?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
-  username: fanstore
-  password: fanstore123#
-  driver-class-name: com.mysql.cj.jdbc.Driver
+fanstore:
+  persistence:
+    flayway:
+      enabled: false
+      clean-disabled: true
+    datasource:
+      mongo: 
+        authentication-database: admin
+        url: mongodb+srv://fanstore:%21fans.dcja61%23@dev-etc-publicmongo-kor-001.kakaoent.io/fanstore?authSource=admin&retryWrites=true&w=majority&tls=false&ssl=false
+      mysql:
+        account-master:
+          jdbc-url: jdbc:mysql://dev-fanstore-db.kakaoent.io:3306/account?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
+          username: fanstore
+          password: fanstore123#
+          driver-class-name: com.mysql.cj.jdbc.Driver
 
-spring.flyway:
-  enabled: true
-  url: jdbc:mysql://dev-fanstore-db.kakaoent.io:3306/mall?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
-  user: fanstore
-  password: fanstore123#
+        order-master:
+          jdbc-url: jdbc:mysql://dev-fanstore-db.kakaoent.io:3306/order?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
+          username: fanstore
+          password: fanstore123#
+          driver-class-name: com.mysql.cj.jdbc.Driver   
+
+        mall-master:
+          jdbc-url: jdbc:mysql://dev-fanstore-db.kakaoent.io:3306/mall?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
+          username: fanstore
+          password: fanstore123#
+          driver-class-name: com.mysql.cj.jdbc.Driver   
+
+        verify-master:
+          jdbc-url: jdbc:mysql://dev-fanstore-db.kakaoent.io:3306/verify?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
+          username: fanstore
+          password: fanstore123#
+          driver-class-name: com.mysql.cj.jdbc.Driver   
 
 ---
 spring.config.activate.on-profile: cbt, prod
 
 # prod에선 절대 enabled:true 로 설정 하면 안됌!
-spring:
-  flyway:
-    enabled: false
-    clean-disabled: true
-  data:
-    mongodb:
-      authentication-database: admin
-      uri: mongodb+srv://fanstore:%21fans.dcja61%23@dev-etc-publicmongo-kor-001.kakaoent.io/fanstore?authSource=admin&retryWrites=true&w=majority&tls=false&ssl=false
+fanstore:
+  persistence:
+    flayway:
+      enabled: false
+      clean-disabled: true
+    datasource:
+      mongo: 
+        authentication-database: admin
+        url: mongodb+srv://fanstore:%21fans.dcja61%23@dev-etc-publicmongo-kor-001.kakaoent.io/fanstore?authSource=admin&retryWrites=true&w=majority&tls=false&ssl=false
+      mysql:
+        account-master:
+          jdbc-url: jdbc:mysql://dev-fanstore-db.kakaoent.io:3306/account?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
+          username: fanstore
+          password: fanstore123#
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        account-slave:
+          jdbc-url: jdbc:mysql://dev-fanstore-db.kakaoent.io:3306/account?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
+          username: fanstore
+          password: fanstore123#
+          driver-class-name: com.mysql.cj.jdbc.Driver          
 
-master-datasource:
-  jdbc-url: jdbc:mysql://aurora-mysql-rover-prod.cluster-cvigzpthfgdo.ap-northeast-2.rds.amazonaws.com:3306/rover?characterEncoding=utf&serverTimezone=UTC8&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
-  username: ${RDB_USERNAME}
-  password: ${RDB_PASSWORD}
-  driver-class-name: com.mysql.cj.jdbc.Driver
+        order-master:
+          jdbc-url: jdbc:mysql://dev-fanstore-db.kakaoent.io:3306/order?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
+          username: fanstore
+          password: fanstore123#
+          driver-class-name: com.mysql.cj.jdbc.Driver   
+        order-slave:
+          jdbc-url: jdbc:mysql://dev-fanstore-db.kakaoent.io:3306/order?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
+          username: fanstore
+          password: fanstore123#
+          driver-class-name: com.mysql.cj.jdbc.Driver             
 
-slave-datasource:
-  jdbc-url: jdbc:mysql://aurora-mysql-rover-prod.cluster-ro-cvigzpthfgdo.ap-northeast-2.rds.amazonaws.com:3306/rover?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
-  username: ${RDB_USERNAME}
-  password: ${RDB_PASSWORD}
-  driver-class-name: com.mysql.cj.jdbc.Driver
+        mall-master:
+          jdbc-url: jdbc:mysql://dev-fanstore-db.kakaoent.io:3306/mall?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
+          username: fanstore
+          password: fanstore123#
+          driver-class-name: com.mysql.cj.jdbc.Driver   
+        mall-slave:
+          jdbc-url: jdbc:mysql://dev-fanstore-db.kakaoent.io:3306/mall?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
+          username: fanstore
+          password: fanstore123#
+          driver-class-name: com.mysql.cj.jdbc.Driver             
+
+        verify-master:
+          jdbc-url: jdbc:mysql://dev-fanstore-db.kakaoent.io:3306/verify?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
+          username: fanstore
+          password: fanstore123#
+          driver-class-name: com.mysql.cj.jdbc.Driver   
+        verify-slave:
+          jdbc-url: jdbc:mysql://dev-fanstore-db.kakaoent.io:3306/verify?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
+          username: fanstore
+          password: fanstore123#
+          driver-class-name: com.mysql.cj.jdbc.Driver                   
+
