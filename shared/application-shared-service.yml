@@ -1,67 +1,71 @@
 ---
 spring.config.activate.on-profile: local
 fanstore:
-  services:
-    -
-      name: order
-      host: http://localhost:10020
-    -
-      name: user
-      host: http://localhost:10030
-    -
-      name: mall
-      host: http://localhost:10040
-    -
-      name: verify
-      host: http://localhost:10050
+  common:
+    services:
+      -
+        name: order
+        host: http://localhost:10020
+      -
+        name: user
+        host: http://localhost:10030
+      -
+        name: mall
+        host: http://localhost:10040
+      -
+        name: verify
+        host: http://localhost:10050
 
 ---
 spring.config.activate.on-profile: dev
 fanstore:
-  services:
-    -
-      name: order
-      host: http://localhost:10020
-    -
-      name: user
-      host: http://localhost:10030
-    -
-      name: mall
-      host: http://localhost:10040
-    -
-      name: verify
-      host: http://localhost:10050
+  common:
+    services:
+      -
+        name: order
+        host: http://localhost:10020
+      -
+        name: user
+        host: http://localhost:10030
+      -
+        name: mall
+        host: http://localhost:10040
+      -
+        name: verify
+        host: http://localhost:10050
 
 ---
 spring.config.activate.on-profile: cbt
 fanstore:
-  services:
-    -
-      name: order
-      host: http://localhost:10020
-    -
-      name: user
-      host: http://localhost:10030
-    -
-      name: mall
-      host: http://localhost:10040
-    -
-      name: verify
-      host: http://localhost:10050
+  common:
+    services:
+      -
+        name: order
+        host: http://localhost:10020
+      -
+        name: user
+        host: http://localhost:10030
+      -
+        name: mall
+        host: http://localhost:10040
+      -
+        name: verify
+        host: http://localhost:10050
 
 ---
 spring.config.activate.on-profile: prod
 fanstore:
-  services:
-    -
-      name: order
-      host: http://localhost:10020
-    -
-      name: user
-      host: http://localhost:10030
-    -
-      name: mall
-      host: http://localhost:10040
-    -
-      name: verify
-      host: http://prod:10050
+  common:
+    services:
+      -
+        name: order
+        host: http://localhost:10020
+      -
+        name: user
+        host: http://localhost:10030
+      -
+        name: mall
+        host: http://localhost:10040
+      -
+        name: verify
+        host: http://localhost:10050
