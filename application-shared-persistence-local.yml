@@ -17,7 +17,7 @@ spring:
 
 fanstore:
   persistence:
-    flayway:
+    flyway:
       enabled: true
       clean-disabled: true
       table: z_flyway_schema_history

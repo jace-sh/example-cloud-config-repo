@@ -5,7 +5,7 @@ spring:
 # prod에선 절대 enabled:true 로 설정 하면 안됌!
 fanstore:
   persistence:
-    flayway:
+    flyway:
       enabled: false
       clean-disabled: true
       table: z_flyway_schema_history

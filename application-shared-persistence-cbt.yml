@@ -1,53 +1,13 @@
 spring:
   jpa:
     open-in-view: false
-    show-sql: false
-    hibernate:
-      ddl-auto: create-drop
-
-fanstore:
-  persistence:
-    flayway:
-      table: z_flyway_schema_history
-      locations: classpath:ddl
-      enabled: false
-      clean-disabled: true
-    datasource:
-      mongo: 
-        authentication-database: admin
-        url: mongodb+srv://fanstore:%21fans.dcja61%23@dev-etc-publicmongo-kor-001.kakaoent.io/fanstore?authSource=admin&retryWrites=true&w=majority&tls=false&ssl=false
-      mysql:
-        account-master:
-          jdbc-url: jdbc:mysql://dev-fanstore-db.kakaoent.io:3306/account?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
-          username: fanstore
-          password: fanstore123#
-          driver-class-name: com.mysql.cj.jdbc.Driver
-
-        order-master:
-          jdbc-url: jdbc:mysql://dev-fanstore-db.kakaoent.io:3306/order?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
-          username: fanstore
-          password: fanstore123#
-          driver-class-name: com.mysql.cj.jdbc.Driver   
-
-        mall-master:
-          jdbc-url: jdbc:mysql://dev-fanstore-db.kakaoent.io:3306/mall?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
-          username: fanstore
-          password: fanstore123#
-          driver-class-name: com.mysql.cj.jdbc.Driver   
-
-        verify-master:
-          jdbc-url: jdbc:mysql://dev-fanstore-db.kakaoent.io:3306/verify?characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&innodb_large_prefix=ON
-          username: fanstore
-          password: fanstore123#
-          driver-class-name: com.mysql.cj.jdbc.Driver   
-
----
-spring.config.activate.on-profile: cbt, prod
 
 # prod에선 절대 enabled:true 로 설정 하면 안됌!
 fanstore:
   persistence:
-    flayway:
+    flyway:
+      table: z_flyway_schema_history
+      locations: classpath:ddl    
       enabled: false
       clean-disabled: true
     datasource:
