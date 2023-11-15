@@ -27,19 +27,19 @@ fanstore:
         authentication-database: admin
         url: mongodb+srv://fanstore:%21fans.dcja61%23@dev-etc-publicmongo-kor-001.kakaoent.io/fanstore?authSource=admin&retryWrites=true&w=majority&tls=false&ssl=false
       mysql:
-        account-master:
+        account-slave:
           jdbc-url: jdbc:h2:mem:fanstore:account;NON_KEYWORDS=USER
           username: sa
           password:
           driver-class-name: org.h2.Driver
 
-        order-master:
+        order-slave:
           jdbc-url: jdbc:h2:mem:fanstore:order;NON_KEYWORDS=USER
           username: sa
           password:
           driver-class-name: org.h2.Driver      
 
-        mall-master:
+        mall-slave:
           jdbc-url: jdbc:h2:mem:fanstore:mall;NON_KEYWORDS=USER
           username: sa
           password:
