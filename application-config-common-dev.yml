@@ -13,3 +13,8 @@ fanstore:
       -
         name: verify
         host: http://localhost:10050
+    client:
+      proxy:
+        http-host: 10.10.10.10
+        http-port: 80
+
