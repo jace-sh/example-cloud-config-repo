@@ -1,0 +1,6 @@
+fanstore:
+  cache:
+    redis:
+      master:
+        host: localhost
+        port: 6399

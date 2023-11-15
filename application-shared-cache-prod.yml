@@ -1,0 +1,4 @@
+fanstore:
+  cache:
+    redis:
+      clusterNodes: localhost:6379, localhost:6380

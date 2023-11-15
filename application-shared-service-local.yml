@@ -1,0 +1,15 @@
+fanstore:
+  common:
+    services:
+      -
+        name: order
+        host: http://localhost:10020
+      -
+        name: user
+        host: http://localhost:10030
+      -
+        name: mall
+        host: http://localhost:10040
+      -
+        name: verify
+        host: http://localhost:10050

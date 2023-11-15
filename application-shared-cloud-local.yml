@@ -1,0 +1,8 @@
+fanstore:
+  cloud:
+    gcp:
+      project-id: dev-melon-ticket-project01
+      credentials:
+        location:
+      storage:
+        bucket: local-fanstore-upload-files

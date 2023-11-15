@@ -1,0 +1,6 @@
+fanstore:
+  cache:
+    redis:
+      master:
+        host: redis-svc.redis
+        port: 6379

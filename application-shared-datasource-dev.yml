@@ -1,77 +1,15 @@
 spring:
   jpa:
     open-in-view: false
+    show-sql: false
+    hibernate:
+      ddl-auto: create-drop
 
 fanstore:
   persistence:
-    flyway:
+    flayway:
       table: z_flyway_schema_history
       locations: classpath:ddl
-
----
-spring.config.activate.on-profile: local
-spring:
-  #  sql:
-  #    init:
-  #      mode: always
-  #      data-locations: classpath:sql/local-init-data.sql
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-  jpa:
-    show-sql: false
-    generate-ddl: true
-    hibernate:
-      ddl-auto: create-drop
-  #    defer-datasource-initialization: true # spring.sql.init 으로 data를 등록하기 위해선 이 mode가 true로 설정되어 있어야함
-
-fanstore:
-  persistence:
-    flayway:
-      enabled: true
-      clean-disabled: true
-    datasource:
-      mongo: 
-        authentication-database: admin
-        url: mongodb+srv://fanstore:%21fans.dcja61%23@dev-etc-publicmongo-kor-001.kakaoent.io/fanstore?authSource=admin&retryWrites=true&w=majority&tls=false&ssl=false
-      mysql:
-        account-master:
-          jdbc-url: jdbc:h2:mem:fanstore:account;NON_KEYWORDS=USER
-          username: sa
-          password:
-          driver-class-name: org.h2.Driver
-
-        order-master:
-          jdbc-url: jdbc:h2:mem:fanstore:order;NON_KEYWORDS=USER
-          username: sa
-          password:
-          driver-class-name: org.h2.Driver      
-
-        mall-master:
-          jdbc-url: jdbc:h2:mem:fanstore:mall;NON_KEYWORDS=USER
-          username: sa
-          password:
-          driver-class-name: org.h2.Driver      
-
-        verify-master:
-          jdbc-url: jdbc:h2:mem:fanstore:verify;NON_KEYWORDS=USER
-          username: sa
-          password:
-          driver-class-name: org.h2.Driver
-
----
-spring.config.activate.on-profile: dev
-
-spring:
-  jpa:
-    show-sql: false
-    hibernate:
-      ddl-auto: create-drop
-
-fanstore:
-  persistence:
-    flayway:
       enabled: false
       clean-disabled: true
     datasource:
