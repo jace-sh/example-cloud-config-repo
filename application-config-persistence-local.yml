@@ -32,19 +32,16 @@ fanstore:
           username: sa
           password:
           driver-class-name: org.h2.Driver
-
         order-slave:
           jdbc-url: jdbc:h2:mem:fanstore:order;NON_KEYWORDS=USER
           username: sa
           password:
           driver-class-name: org.h2.Driver      
-
         mall-slave:
           jdbc-url: jdbc:h2:mem:fanstore:mall;NON_KEYWORDS=USER
           username: sa
           password:
           driver-class-name: org.h2.Driver      
-
         verify-master:
           jdbc-url: jdbc:h2:mem:fanstore:verify;NON_KEYWORDS=USER
           username: sa
